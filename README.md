@@ -3,6 +3,7 @@
 A [PyTorch](https://pytorch.org/) implementation of [RetinaFace: Single-stage Dense Face Localisation in the Wild](https://arxiv.org/abs/1905.00641). Model size only 1.7M, when Retinaface use mobilenet0.25 as backbone net. The official code in Mxnet can be found [here](https://github.com/deepinsight/insightface/tree/master/RetinaFace).
 
 As tested, this implementation has speed issue, it runs around 300 ms on normal image which is seems slow than any other data.
+**the speed issue still exist**
 
 
 
