@@ -1,0 +1,110 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7cb91/fast 
+/usr/bin/make -f CMakeFiles/cmTC_7cb91.dir/build.make CMakeFiles/cmTC_7cb91.dir/build
+make[1]: Entering directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7cb91.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_7cb91.dir/CheckSymbolExists.c.o   -c /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_7cb91
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7cb91.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_7cb91.dir/CheckSymbolExists.c.o  -o cmTC_7cb91 
+CMakeFiles/cmTC_7cb91.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_7cb91.dir/build.make:86: recipe for target 'cmTC_7cb91' failed
+make[1]: *** [cmTC_7cb91] Error 1
+make[1]: Leaving directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_7cb91/fast' failed
+make: *** [cmTC_7cb91/fast] Error 2
+
+File /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_68f44/fast 
+/usr/bin/make -f CMakeFiles/cmTC_68f44.dir/build.make CMakeFiles/cmTC_68f44.dir/build
+make[1]: Entering directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_68f44.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_68f44.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
+Linking C executable cmTC_68f44
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68f44.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_68f44.dir/CheckFunctionExists.c.o  -o cmTC_68f44 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_68f44.dir/build.make:86: recipe for target 'cmTC_68f44' failed
+make[1]: *** [cmTC_68f44] Error 1
+make[1]: Leaving directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_68f44/fast' failed
+make: *** [cmTC_68f44/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_4ebdb/fast 
+/usr/bin/make -f CMakeFiles/cmTC_4ebdb.dir/build.make CMakeFiles/cmTC_4ebdb.dir/build
+make[1]: Entering directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4ebdb.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_4ebdb.dir/CheckSymbolExists.c.o   -c /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_4ebdb
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4ebdb.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_4ebdb.dir/CheckSymbolExists.c.o  -o cmTC_4ebdb 
+CMakeFiles/cmTC_4ebdb.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_4ebdb.dir/build.make:86: recipe for target 'cmTC_4ebdb' failed
+make[1]: *** [cmTC_4ebdb] Error 1
+make[1]: Leaving directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_4ebdb/fast' failed
+make: *** [cmTC_4ebdb/fast] Error 2
+
+File /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c3755/fast 
+/usr/bin/make -f CMakeFiles/cmTC_c3755.dir/build.make CMakeFiles/cmTC_c3755.dir/build
+make[1]: Entering directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c3755.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_c3755.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c3755
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3755.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_c3755.dir/CheckFunctionExists.c.o  -o cmTC_c3755 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_c3755.dir/build.make:86: recipe for target 'cmTC_c3755' failed
+make[1]: *** [cmTC_c3755] Error 1
+make[1]: Leaving directory '/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_c3755/fast' failed
+make: *** [cmTC_c3755/fast] Error 2
+
+
