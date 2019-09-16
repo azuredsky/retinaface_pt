@@ -1,3 +1,0 @@
-/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/rebuild_cache.dir
-/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/retinaface.dir
-/media/jintian/netac/ai/manaai/retinaface_pt/vendor/retinaface/build/CMakeFiles/edit_cache.dir
