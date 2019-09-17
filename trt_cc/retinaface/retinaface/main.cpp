@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
       double cost = timer.lap();
       cout << "cost time: " << cost << "s"
            << " fps: " << 1 / cost << endl;
+      cv::imshow("rr", img);
+      cv::waitKey(0);
     }
   } else {
     // inference on video
