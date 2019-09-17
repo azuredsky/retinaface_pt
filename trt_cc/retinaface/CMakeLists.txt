@@ -120,7 +120,7 @@ target_link_libraries(retinaface -lprotobuf -lboost_system -lglog ${OpenCV_LIBS}
 if(USE_TENSORRT)
     target_link_libraries(retinaface -L/usr/local/cuda/lib64 -L$ENV{HOME}/TensorRT/lib
         -lnvinfer -lnvcaffe_parser -lcuda -lcudart -lcublas -lcudnn -lcurand -lboost_thread -lnppig
-        -lnppicc -lnppc -lnppidei -lnppist)
+        -lnppicc -lnppc -lnppidei -lnppist -lthor)
 elseif(USE_CAFFE)
     target_link_libraries(retinaface -L/home/ubuntu/caffe-office/caffe/build/lib -lcaffe -lboost_system -lboost_thread)
 endif()

@@ -1,59 +1,72 @@
-#include <iostream>
 #include <RetinaFace.h>
+#include <iostream>
+#include "thor/os.h"
+#include "thor/timer.h"
 #include "timer.h"
 
 using namespace std;
 
-int main()
-{
-//    std::unique_ptr<caffe::Caffe> caffe_context_;
-//    cudaSetDevice(0);
-//    caffe_context_.reset(new Caffe);
-//    Caffe::Set(caffe_context_.get());
+int main(int argc, char** argv) {
+  string path = "../model";
+  RetinaFace* rf = new RetinaFace(path, "net3");
 
-    string path = "../model";
-    RetinaFace *rf = new RetinaFace(path, "net3");
-
-    //cv::VideoCapture cap(0);
-    cv::Mat img = cv::imread("/home/ubuntu/Pictures/t1.jpg");
-    
+  if (thor::os::isdir(argv[1])) {
+    vector<cv::String> fn;
+    string image_file_ptn = thor::os::join(argv[1], "*.jpg");
+    cv::glob(image_file_ptn, fn, true);
+    cout << "found all " << fn.size() << " images.\n";
     vector<Mat> imgs;
-    for(int i = 0; i < 64; i++) {
-        string prefix = "/home/ubuntu/Project/faceengine/faceengine/test/FaceEngineTest/images/gakki/";
-        string imgname = prefix + std::to_string(2005 + i) + ".jpg";
-        cv::Mat src = cv::imread(imgname);
-        imgs.push_back(img.clone());
+    for (auto f : fn) {
+      cv::Mat src = cv::imread(f);
+      imgs.push_back(src.clone());
     }
 
-    //rf.detect(img, 0.9);
-    //rf.detectBatchImages(imgs, 0.9);
-
-//    int c = 0;
-//    float time = 0;
-//    int count = 0;
-
-    //注：使用OPENCV计时和timer类计时有点偏差
     float time = 0;
     int count = 0;
-    RK::Timer ti;
 
-    while(/*cap.read(img)*/1) {
-        ti.reset();
-        //double t1 = (double)getTickCount();
-        rf->detect(img, 0.9);
-        //rf->detectBatchImages(imgs, 0.9);
+    thor::Timer timer(20);
+    timer.on();
 
-        //t1 = (double)getTickCount() - t1;
-        //time += t1 * 1000 / cv::getTickFrequency();
-        time += ti.elapsedMilliSeconds();
-        count ++;
-        if(count % 1000 == 0) {
-            printf("face detection average time = %f.\n", time / count);
-        }
+    int i = 0;
+    for (auto img : imgs) {
+      i++;
+      cout << "inference on img: " << i << endl;
+      timer.lap();
+      rf->detect(img, 0.5);
+      double cost = timer.lap();
+      cout << "cost time: " << cost << "s"
+           << " fps: " << 1 / cost << endl;
     }
-    //t1 = (double)getTickCount() - t1;
-    //std::cout << "all compute time :" << t1*1000.0 / cv::getTickFrequency() << " ms \n";
+  } else {
+    // inference on video
+    string f_suffix = thor::os::suffix(argv[1]);
+    if (f_suffix == "mp4") {
+      // solve video
+      cv::VideoCapture cap(argv[1]);
+      if (!cap.isOpened()) {
+        cerr << "video open failed: " << argv[1] << endl;
+        return -1;
+      }
+
+      thor::Timer timer(20);
+      timer.on();
+
+      for (;;) {
+        cv::Mat frame;
+        cap >> frame;
+        if (frame.empty()) break;
+
+        timer.lap();
+        rf->detect(frame, 0.5);
+        double cost = timer.lap();
+        cout << "cost time: " << cost << "s"
+             << " fps: " << 1 / cost << endl;
+
+        cv::imshow("rr", frame);
+        cv::waitKey(1);
+      }
+    }
 
     return 0;
+  }
 }
-
