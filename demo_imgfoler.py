@@ -17,7 +17,7 @@ import glob
 import time
 
 
-force_cpu = True
+force_cpu = False
 if force_cpu:
     device = torch.device('cpu')
 
@@ -123,7 +123,7 @@ if __name__ == '__main__':
         print('input tensor shape: {}'.format(img.size()))
         tic = time.time()
         loc, conf, landms = net(img)  # forward pass
-        print('net forward time: {}'.format(time.time() - tic))
+        print('net forward time: {:.4f}'.format(time.time() - tic))
         priorbox = PriorBox(cfg, image_size=(im_height, im_width))
         priors = priorbox.forward()
         priors = priors.to(device)

@@ -4,7 +4,8 @@ Here we have retinaface training code with pytorch, and also TensorRT inference 
 
 - [x] Training on wider face;
 - [x] Inference retinaface with mobilenet with TensorRT in pure C++;
-- [ ] python inference on pytorch speed issue needs fix;
+- [x] python inference on pytorch speed issue needs fix;
+- [ ] root reason for why img_folder inference slow than video inference????  Now using video we can get a normal speed.
 
 
 
