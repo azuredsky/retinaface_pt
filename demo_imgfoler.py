@@ -17,7 +17,7 @@ import glob
 import time
 
 
-force_cpu = False
+force_cpu = True
 if force_cpu:
     device = torch.device('cpu')
 
