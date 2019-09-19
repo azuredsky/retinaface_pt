@@ -25,8 +25,10 @@ class ClassHead(nn.Module):
         # b, h, w, c = out.shape
         # out = out.view(b, h, w, self.num_anchors, 2)
         # out = self.output_act(out)
-        
-        return out.view(out.shape[0], -1, 2)
+        print('class head out: ', out.size())
+        # return out.view(out.shape[0], -1, 2)
+        return out.view(1, -1, 2)
+        # return out.squeeze().view(-1, 2)
 
 class BboxHead(nn.Module):
     def __init__(self,inchannels=512,num_anchors=3):
@@ -36,8 +38,10 @@ class BboxHead(nn.Module):
     def forward(self,x):
         out = self.conv1x1(x)
         out = out.permute(0,2,3,1).contiguous()
-
-        return out.view(out.shape[0], -1, 4)
+        print('box head out: ', out.size())
+        # return out.view(out.shape[0], -1, 4)
+        return out.view(1, -1, 4)
+        # return out.squeeze().view(-1, 4)
 
 class LandmarkHead(nn.Module):
     def __init__(self,inchannels=512,num_anchors=3):
@@ -47,8 +51,10 @@ class LandmarkHead(nn.Module):
     def forward(self,x):
         out = self.conv1x1(x)
         out = out.permute(0,2,3,1).contiguous()
-
-        return out.view(out.shape[0], -1, 10)
+        print('landmark head out: ', out.size())
+        # return out.view(out.shape[0], -1, 10)
+        return out.view(1, -1, 10)
+        # return out.squeeze().view(-1, 10)
 
 class RetinaFace(nn.Module):
     def __init__(self, phase = 'train', net = 'mnet0.25', return_layers = {'stage1': 1, 'stage2': 2, 'stage3': 3}):
@@ -106,6 +112,7 @@ class RetinaFace(nn.Module):
         out = self.body(inputs)
 
         # FPN
+        # when onnx2trt, this part will raise a [8] Assertion failed: axis >= 0 && axis < nbDims issue
         fpn = self.fpn(out)
 
         # SSH

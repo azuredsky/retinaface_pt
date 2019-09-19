@@ -91,6 +91,21 @@ class FPN(nn.Module):
         out = [output1, output2, output3]
         return out
 
+        # try debug where FPN part blocked
+        # print(output2.shape)
+        # print(output2.size())
+        # print(output2.size(2))
+        # up3 = F.interpolate(output3, size=(output2.size(2), output2.size(3)), mode="nearest")
+        # output2 = output2 + up3
+        # output2 = self.merge2(output2)
+
+        # # up2 = F.interpolate(output2, size=[output1.size(2), output1.size(3)], mode="nearest")
+        # # output1 = output1 + up2
+        # output1 = self.merge1(output1)
+
+        # out = [output1, output2, output3]
+        # return out
+
 
 
 class MobileNetV1(nn.Module):
