@@ -6,7 +6,13 @@ Here we have retinaface training code with pytorch, and also TensorRT inference 
 - [x] Inference retinaface with mobilenet with TensorRT in pure C++;
 - [x] python inference on pytorch speed issue needs fix;
 - [ ] root reason for why img_folder inference slow than video inference????  Now using video we can get a normal speed.
-- [ ] convert pytorch model to onnx.
+- [x] convert pytorch model to onnx.
+
+
+
+## Updates
+
+- **2019.09.23**: Now we add a standalone onnxruntime inference demo! You can using onnxruntime-gpu or onnxruntime to do inference on our onnx model. It runs about 40ms on CPU!!! Amazing fast! With acceleration of GPU, it would got massive speed enhancement!
 
 
 
