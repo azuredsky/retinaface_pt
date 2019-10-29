@@ -118,14 +118,18 @@ if __name__ == '__main__':
         img = img.transpose(2, 0, 1)
         img = torch.from_numpy(img).unsqueeze(0)
         img = img.to(device)
+        # print(img)
         scale = scale.to(device)
 
-        print('input tensor shape: {}'.format(img.size()))
+        # print('input tensor shape: {}'.format(img.size()))
         tic = time.time()
         loc, conf, landms = net(img)  # forward pass
         print('net forward time: {:.4f}'.format(time.time() - tic))
         priorbox = PriorBox(cfg, image_size=(im_height, im_width))
         priors = priorbox.forward()
+        print('priors: ', priors[:5])
+        print('priors: ', priors[-5:])
+        print(priors.shape)
         priors = priors.to(device)
         prior_data = priors.data
         boxes = decode(loc.data.squeeze(0), prior_data, cfg['variance'])

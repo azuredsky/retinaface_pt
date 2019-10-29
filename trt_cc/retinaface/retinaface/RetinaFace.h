@@ -6,6 +6,7 @@
 #include <map>
 #include <opencv2/opencv.hpp>
 #include "tensorrt/trtretinafacenet.h"
+#include "thor/logging.h"
 
 #ifdef USE_CAFFE
 #include <caffe/caffe.hpp>
@@ -13,6 +14,7 @@
 
 using namespace cv;
 using namespace std;
+using namespace thor::log;
 
 struct anchor_win
 {

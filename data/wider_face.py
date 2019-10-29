@@ -5,6 +5,8 @@ import torch
 import torch.utils.data as data
 import cv2
 import numpy as np
+from alfred.utils.log import logger as logging
+
 
 class WiderFaceDetection(data.Dataset):
     def __init__(self, txt_path, preproc=None):
@@ -31,7 +33,7 @@ class WiderFaceDetection(data.Dataset):
                 line = line.split(' ')
                 label = [float(x) for x in line]
                 labels.append(label)
-
+        logging.info('some img path to check: {}'.format(self.imgs_path[0]))
         self.words.append(labels)
 
     def __len__(self):

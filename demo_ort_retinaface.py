@@ -35,6 +35,7 @@ class PriorBox(object):
     def forward(self):
         anchors = []
         for k, f in enumerate(self.feature_maps):
+            print(k, f)
             min_sizes = self.min_sizes[k]
             for i, j in product(range(f[0]), range(f[1])):
                 for min_size in min_sizes:
@@ -50,6 +51,9 @@ class PriorBox(object):
 priorbox = PriorBox(image_size=(678, 1024))
 priors = priorbox.forward()
 print('priors.shape: ', priors.shape)
+print('priors: ', priors[:5])
+print('priors: ', priors[-5:])
+print(priors.shape)
 
 
 def decode_box(loc, priors, variances=[0.1, 0.2]):
@@ -102,13 +106,14 @@ if os.path.basename(data_f).split('.')[-1] == 'mp4':
             scores = np.squeeze(out2, axis=0)[:, 1]
             boxes = np.squeeze(out1, axis=0)
             landmarks = np.squeeze(out3, axis=0)
+            print('row boxes: ', boxes[:5])
             inds = np.where(scores > 0.8)[0]
             boxes = decode_box(boxes, priors)
             boxes *= [img_w, img_h, img_w, img_h]
             scores = scores[inds]
             boxes = boxes[inds]
             landmarks = landmarks[inds]
-
+            print('include post process time: ', time.time() - tic)
             ori_img_resized = cv2.resize(frame, (img_w, img_h))
             for b in boxes:
                 b = np.array(b, dtype=np.int)
@@ -129,21 +134,25 @@ else:
     tic = time.time()
     out1, out2, out3 = session.run(None, {session.get_inputs()[0].name: img_data})
     logging.info('finished in: {}'.format(time.time() - tic))
-
+    print('out1: ', out1.shape)
+    print('out2: ', out2.shape)
+    print('out3: ', out3.shape)
     scores = np.squeeze(out2, axis=0)[:, 1]
     boxes = np.squeeze(out1, axis=0)
     landmarks = np.squeeze(out3, axis=0)
+    print('row boxes: ', boxes[:5])
+    print('landmarks: ', landmarks[:5])
+    print('confs: ', np.squeeze(out2, axis=0)[:5])
     inds = np.where(scores > 0.8)[0]
     boxes = decode_box(boxes, priors)
     boxes *= [img_w, img_h, img_w, img_h]
     scores = scores[inds]
     boxes = boxes[inds]
     landmarks = landmarks[inds]
-
+    print('include post process time: ', time.time() - tic)
     ori_img_resized = cv2.resize(ori_img, (img_w, img_h))
     for b in boxes:
         b = np.array(b, dtype=np.int)
-        print(b)
         cv2.rectangle(ori_img_resized, (b[0], b[1]),
                                 (b[2], b[3]), (0, 0, 255), 2)
     cv2.imshow('rr', ori_img_resized)

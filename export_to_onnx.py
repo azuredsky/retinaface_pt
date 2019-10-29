@@ -74,5 +74,6 @@ a = net(x)
 print(a)
 for aa in a:
     print(aa.size())
-torch_out = torch.onnx.export(net, x, "retinaface_mbv2.onnx", export_params=True)
+torch_out = torch.onnx.export(net, x, "retinaface_mbv2.onnx",
+                              opset_version=10, export_params=True)
 print('onnx model exported.')

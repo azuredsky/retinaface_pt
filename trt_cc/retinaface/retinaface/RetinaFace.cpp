@@ -369,7 +369,6 @@ vector<anchor_box> RetinaFace::bbox_pred(vector<anchor_box> anchors,
     rects[i].x2 = pred_ctr_x + 0.5 * (pred_w - 1.0);
     rects[i].y2 = pred_ctr_y + 0.5 * (pred_h - 1.0);
   }
-
   return rects;
 }
 
@@ -664,6 +663,7 @@ void RetinaFace::detect(Mat &img, float threshold, float scales) {
   string name_landmark = "face_rpn_landmark_pred_";
 
   vector<FaceDetectInfo> faceInfo;
+  LOG(INFO) << "_feat_stride_fpn: " << _feat_stride_fpn.size();
   for (size_t i = 0; i < _feat_stride_fpn.size(); i++) {
     string key = "stride" + std::to_string(_feat_stride_fpn[i]);
 
@@ -687,6 +687,7 @@ void RetinaFace::detect(Mat &img, float threshold, float scales) {
     size_t count = width * height;
     size_t num_anchor = _num_anchors[key];
 
+    LOG(INFO) << "anchor num: " << num_anchor << " count: " << count;
     for (size_t num = 0; num < num_anchor; num++) {
       for (size_t j = 0; j < count; j++) {
         //置信度小于阈值跳过
